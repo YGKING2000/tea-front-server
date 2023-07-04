@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-public class FirstCategoryListItemVO implements Serializable {
+public class CategoryListItemVO implements Serializable {
     /**
      * 数据ID
      */

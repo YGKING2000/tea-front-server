@@ -1,7 +1,7 @@
 package com.example.tea.front.server.content.controller;
 
 import com.example.tea.front.server.common.web.JsonResult;
-import com.example.tea.front.server.content.pojo.vo.FirstCategoryListItemVO;
+import com.example.tea.front.server.content.pojo.vo.CategoryListItemVO;
 import com.example.tea.front.server.content.service.ICategoryService;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
@@ -23,18 +23,22 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@Api(tags = "1.2 分类管理")
+@Api(tags = "1.2 分类模块")
 @RequestMapping("/content/categories")
 public class CategoryController {
     @Resource
     private ICategoryService service;
-    
-    @ApiOperation("查询一级分类列表")
+
+    public CategoryController() {
+        log.info("创建控制器对象: CategoryController");
+    }
+
+    @ApiOperation("查询分类数据列表")
     @ApiOperationSupport(order = 400)
     @GetMapping("/list/first")
-    public JsonResult getFirstCategoryList() {
-        log.debug("开始处理【查询一级分类列表】请求，无参数");
-        List<FirstCategoryListItemVO> firstCategoryList = service.getFirstCategoryList();
+    public JsonResult list() {
+        log.debug("开始处理【查询分类数据列表】请求，无参数");
+        List<CategoryListItemVO> firstCategoryList = service.list();
         return JsonResult.ok(firstCategoryList);
     }
 }

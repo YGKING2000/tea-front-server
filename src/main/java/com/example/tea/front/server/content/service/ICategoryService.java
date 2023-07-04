@@ -1,6 +1,6 @@
 package com.example.tea.front.server.content.service;
 
-import com.example.tea.front.server.content.pojo.vo.FirstCategoryListItemVO;
+import com.example.tea.front.server.content.pojo.vo.CategoryListItemVO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,9 +13,14 @@ import java.util.List;
 @Transactional
 public interface ICategoryService {
     /**
-     * 获取一级分类列表
-     *
-     * @return 一级分类列表
+     * 重建缓存中的分类数据列表
      */
-    List<FirstCategoryListItemVO> getFirstCategoryList();
+    void rebuildCacheList();
+
+    /**
+     * 获取分类数据列表
+     *
+     * @return 分类数据列表
+     */
+    List<CategoryListItemVO> list();
 }

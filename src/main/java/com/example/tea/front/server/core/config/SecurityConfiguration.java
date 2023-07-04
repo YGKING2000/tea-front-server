@@ -5,12 +5,16 @@ import com.example.tea.front.server.common.web.JsonResult;
 import com.example.tea.front.server.common.web.ServiceCode;
 import com.example.tea.front.server.core.filter.JwtAuthorizationFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -31,11 +35,23 @@ import java.io.PrintWriter;
 // @EnableWebSecurity(debug = true)// 开启调试模式，在控制台将显示很多日志，在生产环境中不宜开启
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    public SecurityConfiguration() {
+        log.debug("创建配置类对象: SecurityConfiguration");
+    }
+
     @Resource
     private JwtAuthorizationFilter jwtAuthorizationFilter;
 
-    public SecurityConfiguration() {
-        log.debug("创建配置类对象: SecurityConfiguration");
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        // 返回此加密的编码器之后，用户输入的密码会通过此编码器加密之后再和数据库里面的密码进行比较
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -72,7 +88,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/**/*.js",
                 "/**/*.css",
                 "/swagger-resources",// API资源文件
-                "/v2/api-docs"// API文档请求
+                "/v2/api-docs",// API文档请求
+                "/resources/**", // 静态资源文件夹，通常是上传的文件，请与配置文件中的"tea-store.upload.base-dir-name"一致
+                "/account/users/login",//用户登录
+                "/content/categories",
+                "/content/tags",
+                "/content/articles",
+                "/content/articles/*",
+                "/content/articles/list-by-category",
+                "/content/comments/list-by-article"
         };
         // 禁用"防止伪造的跨域攻击的防御机制"
         http.csrf().disable();
@@ -84,7 +108,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(urls) // 匹配某些请求
                 .permitAll() // 许可，即不需要通过认证就可以访问
                 .anyRequest() // 任何请求，从执行效果来看，也可以视为: 除了以上配置过的以外的其它请求
-                .authenticated(); // 需要通过认证才可以访问
+                .authenticated() // 需要通过认证才可以访问
+        ;
 
         // 是否调用以下方法，将决定是否启用默认的登录页面
         // 当未通过认证时，如果有登录页，则自动跳转到登录，如果没有登录页，则直接响应403

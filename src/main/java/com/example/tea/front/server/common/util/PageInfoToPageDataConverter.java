@@ -1,6 +1,6 @@
 package com.example.tea.front.server.common.util;
 
-import com.example.tea.front.server.common.vo.PageData;
+import com.example.tea.front.server.common.pojo.vo.PageData;
 import com.github.pagehelper.PageInfo;
 
 /**

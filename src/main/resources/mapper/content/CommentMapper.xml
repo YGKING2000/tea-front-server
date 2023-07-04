@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tea.front.server.content.dao.persist.mapper.CommentMapper">
+    <select id="listByArticleId" resultMap="listResultMap">
+        SELECT id, author_name, content, floor, up_count, down_count, gmt_create
+        FROM content_comment
+        WHERE article_id = #{articleId}
+    </select>
+    
+    <resultMap id="listResultMap" type="com.example.tea.front.server.content.pojo.vo.CommentListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_name" property="authorName"/>
+        <result column="content" property="content"/>
+        <result column="floor" property="floor"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="gmt_create" property="gmtCreate"/>
+    </resultMap>
+</mapper>

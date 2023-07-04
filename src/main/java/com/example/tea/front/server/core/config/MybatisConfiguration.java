@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/06/29 19:10
  */
 @Configuration
-@MapperScan({"com.example.tea.front.server.content.dao.persist.mapper"})
+@MapperScan({
+        "com.example.tea.front.server.content.dao.persist.mapper",
+        "com.example.tea.front.server.account.dao.persist.mapper"
+})
 public class MybatisConfiguration {
 }

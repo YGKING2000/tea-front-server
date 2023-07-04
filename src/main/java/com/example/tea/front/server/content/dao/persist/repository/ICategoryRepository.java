@@ -1,6 +1,6 @@
 package com.example.tea.front.server.content.dao.persist.repository;
 
-import com.example.tea.front.server.content.pojo.vo.FirstCategoryListItemVO;
+import com.example.tea.front.server.content.pojo.vo.CategoryListItemVO;
 
 import java.util.List;
 
@@ -11,8 +11,9 @@ import java.util.List;
  */
 public interface ICategoryRepository {
     /**
-     * 获取一级分类列表
-     * @return 一级分类列表
+     * 获取分类数据列表
+     *
+     * @return 分类数据列表
      */
-    List<FirstCategoryListItemVO> getFirstCategoryList();
+    List<CategoryListItemVO> list();
 }

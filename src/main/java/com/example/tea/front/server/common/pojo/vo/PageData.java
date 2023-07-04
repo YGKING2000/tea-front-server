@@ -1,4 +1,4 @@
-package com.example.tea.front.server.common.vo;
+package com.example.tea.front.server.common.pojo.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

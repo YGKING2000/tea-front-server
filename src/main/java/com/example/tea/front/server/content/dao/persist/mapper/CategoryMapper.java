@@ -2,7 +2,7 @@ package com.example.tea.front.server.content.dao.persist.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.tea.front.server.content.pojo.entity.Category;
-import com.example.tea.front.server.content.pojo.vo.FirstCategoryListItemVO;
+import com.example.tea.front.server.content.pojo.vo.CategoryListItemVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
 @Repository
 public interface CategoryMapper extends BaseMapper<Category> {
     /**
-     * 获取一级分类列表
+     * 获取分类数据列表
      *
-     * @return 一级分类列表
+     * @return 分类数据列表
      */
-    List<FirstCategoryListItemVO> getFirstCategoryList();
+    List<CategoryListItemVO> getFirstCategoryList();
 }

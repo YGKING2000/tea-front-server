@@ -2,7 +2,7 @@ package com.example.tea.front.server.content.dao.persist.repository.impl;
 
 import com.example.tea.front.server.content.dao.persist.mapper.CategoryMapper;
 import com.example.tea.front.server.content.dao.persist.repository.ICategoryRepository;
-import com.example.tea.front.server.content.pojo.vo.FirstCategoryListItemVO;
+import com.example.tea.front.server.content.pojo.vo.CategoryListItemVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -21,12 +21,12 @@ public class CategoryRepositoryImpl implements ICategoryRepository {
     private CategoryMapper mapper;
     
     public CategoryRepositoryImpl() {
-        log.debug("创建存储库对象: CategoryRepositoryImpl");
+        log.info("创建存储库对象: CategoryRepositoryImpl");
     }
-    
+
     @Override
-    public List<FirstCategoryListItemVO> getFirstCategoryList() {
-        log.debug("开始执行【查询一级分类列表】操作，无参数");
+    public List<CategoryListItemVO> list() {
+        log.debug("开始执行【查询分类数据列表】操作，无参数");
         return mapper.getFirstCategoryList();
     }
 }
