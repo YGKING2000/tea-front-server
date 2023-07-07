@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2023/07/03 10:16
  */
 @Repository
-public class IUserCacheRepositoryImpl implements IUserCacheRepository {
+public class UserCacheRepositoryImpl implements IUserCacheRepository {
 
     @Value("${tea-store.jwt.duration-in-minute}")
     private Long durationInMinute;

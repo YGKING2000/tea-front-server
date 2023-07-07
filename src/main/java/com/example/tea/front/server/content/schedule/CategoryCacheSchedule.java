@@ -24,9 +24,9 @@ public class CategoryCacheSchedule {
 
     // fixedRate: 执行频率，根据上一次执行的开始时间来计算下一次的执行时间，取值以毫秒为单位
     // fixedDelay: 执行间隔，根据上一次执行的结束时间来计算下一次的执行时间，取值以毫秒为单位
-    // @Scheduled(fixedRate = 3 * 1000)
-    // public void rebuildCacheList() {
-    //     log.debug("开始执行【重建缓存中的分类列表】的计划任务");
-    //     service.rebuildCacheList();
-    // }
+    @Scheduled(fixedRate = 5 * 60 * 1000)
+    public void rebuildCacheList() {
+        log.debug("开始执行【重建缓存中的分类列表】的计划任务");
+        service.rebuildCacheList();
+    }
 }

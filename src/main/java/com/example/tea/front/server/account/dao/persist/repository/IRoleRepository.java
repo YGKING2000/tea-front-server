@@ -9,7 +9,6 @@ import com.example.tea.front.server.common.pojo.vo.PageData;
  * @date 2023/06/25 09:12
  */
 public interface IRoleRepository {
-
     /**
      * 查询角色列表
      *
@@ -18,5 +17,4 @@ public interface IRoleRepository {
      * @return 角色列表
      */
     PageData<RoleListItemVO> list(Integer pageNum, Integer pageSize);
-
 }
